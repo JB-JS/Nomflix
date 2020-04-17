@@ -155,9 +155,13 @@ const DetailPresenter = withRouter(
                 </Title>
                 <ItemContainer>
                   <Item>
+                    {console.log(result)}
                     {result.release_date
-                      ? result.release_date.substring(0, 4)
-                      : result.first_air_date.substring(0, 4)}
+                      ? result.release_date.length > 0 &&
+                        result.release_date.substring(0, 4)
+                      : result.first_air_date &&
+                        result.first_air_date.length > 0 &&
+                        result.first_air_date.substring(0, 4)}
                   </Item>
                   <Divider>•</Divider>
                   <Item>

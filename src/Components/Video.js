@@ -50,7 +50,6 @@ export default ({ result }) => (
       </Title>
     </Div>
     <Container>
-      {console.log(result)}
       {result.videos.results.map((video) => (
         <Item key={video.id}>
           <iframe
