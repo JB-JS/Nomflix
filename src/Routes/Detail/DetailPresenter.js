@@ -87,7 +87,6 @@ const Imdb = styled.img`
 `;
 
 const Tabs = styled.div`
-  padding: 1rem;
   border-radius: 3px;
 `;
 
