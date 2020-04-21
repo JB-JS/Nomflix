@@ -21,10 +21,11 @@ const Div = styled.div`
 
 const Theme = styled.div`
   display: flex;
+  height: 100%;
 `;
 
 const Backdrop = styled.div`
-  width: 70%;
+  width: 100%;
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
   background-position: center;
@@ -41,18 +42,21 @@ const Content = styled.div`
 `;
 
 const Cover = styled.div`
-  width: 30%;
+  width: 40%;
+  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1), transparent);
+  line-height: 200px;
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
-  height: calc(100vh - 50px);
-  border-radius: 5px;
 `;
 
 const Data = styled.div`
-  width: 70%;
-  margin-left: 3rem;
-  margin-top: 3rem;
+  width: 40%;
+  margin-left: 1rem;
+  margin-top: 1rem;
 `;
 
 const Title = styled.h1`
@@ -85,7 +89,6 @@ const Imdb = styled.img`
 const Tabs = styled.div`
   padding: 1rem;
   border-radius: 3px;
-  margin-top: 2rem;
 `;
 
 const TabsTitle = styled(Link)`
@@ -136,17 +139,17 @@ const DetailPresenter = withRouter(
           </title>
         </Helmet>
         <Theme>
-          <Cover
-            bgImage={
-              result.poster_path
-                ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-                : require("../../assets/noPosterSmall.jpg")
-            }
-          />
           <Backdrop
             bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
           >
             <Content>
+              <Cover
+                bgImage={
+                  result.poster_path
+                    ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                    : require("../../assets/noPosterSmall.jpg")
+                }
+              />
               <Data>
                 <Title>
                   {result.original_title
@@ -155,7 +158,6 @@ const DetailPresenter = withRouter(
                 </Title>
                 <ItemContainer>
                   <Item>
-                    {console.log(result)}
                     {result.release_date
                       ? result.release_date.length > 0 &&
                         result.release_date.substring(0, 4)
@@ -181,13 +183,16 @@ const DetailPresenter = withRouter(
                   </Item>
                   <Divider>•</Divider>
                   <a
-                    href={`https://www.imdb.com/title/${result.imdb_id}`}
+                    href={
+                      result.imdb_id &&
+                      `https://www.imdb.com/title/${result.imdb_id}`
+                    }
                     target="_blank"
                   >
                     <Imdb src={require("assets/IMDB.jpg")} alt="IMDB"></Imdb>
                   </a>
                 </ItemContainer>
-                <Overview>{result.overview.substring(0, 400)}...</Overview>
+                <Overview>{result.overview.substring(0, 200)}...</Overview>
                 <Video result={result}></Video>
                 <Tabs>
                   <ItemTabs>

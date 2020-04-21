@@ -24,7 +24,7 @@ const Item = styled.div`
 const Img = styled.img`
   width: 120px;
   margin-bottom: 0.25rem;
-  height: 180px;
+  height: 150px;
 `;
 
 const Title = styled.h2`
